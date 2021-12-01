@@ -1,0 +1,23 @@
+{
+  "name": "advent-of-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "main": "ts-node ./src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.16.0",
+    "@types/jest": "^27.0.2",
+    "jest": "^27.3.1",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.16.0",
+    "@types/node": "^16.11.7"
+  }
+}
