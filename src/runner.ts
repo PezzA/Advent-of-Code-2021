@@ -1,4 +1,5 @@
 import * as Day1 from './day01'
+import * as Day2 from './day02'
 
 
 if(process.argv.length != 4) {
@@ -12,4 +13,10 @@ if(input === 1){
     console.log("part one: ", Day1.partOne(filePath))
     console.log("part two: ", Day1.partTwo(filePath))    
 }
+
+if(input === 2){
+    console.log("part one: ", Day2.PartOne(filePath))
+    console.log("part one: ", Day2.PartTwo(filePath))
+}
+
 

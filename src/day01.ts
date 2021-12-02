@@ -7,10 +7,12 @@ function parseData(input: string[]): number[] {
 export function partOne(input: string): string | number {
     const measurements = parseData(getData(input));
 
+
     let increases = 0;
-    let prev: number | null = null;
+    let prev: number = 0;
+
     for (let i = 0; i < measurements.length; i++) {
-        if (prev === null) {
+        if (i === 0) {
             prev = measurements[i]
             continue
         }
@@ -29,9 +31,9 @@ export function partTwo(input: string): any {
     const measurements = parseData(getData(input));
 
     let increases = 0;
-    let prev: number | null = null;
+    let prev: number = 0;
     for (let i = 2; i < measurements.length; i++) {
-        if (prev === null) {
+        if (i === 2) {
             prev = measurements[i] + measurements[i - 1] + measurements[i - 2]
             continue
         }
