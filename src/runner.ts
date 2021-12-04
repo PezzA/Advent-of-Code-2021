@@ -23,6 +23,3 @@ if(input === 1){
     console.log("part one: ", Day4.PartOne(filePath))
     console.log("part two: ", Day4.PartTwo(filePath))
 }
-
-
-
