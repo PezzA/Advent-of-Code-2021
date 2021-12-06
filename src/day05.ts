@@ -72,7 +72,6 @@ export function applyLines(insList: Instruction[], supportDiagonal: boolean): Gr
                     x+= xInc
                     y+= yInc
                 }
-
             }
         }
     }
@@ -83,14 +82,10 @@ export function applyLines(insList: Instruction[], supportDiagonal: boolean): Gr
 function checkCell(x: number, y: number, g: Grid) {
     const p = `${x}-${y}`
 
-    if (g.has(p)) {
-        const cell = g.get(p)
+    const cell = g.get(p)
 
-        if (cell === undefined) {
-            throw new Error('how could this even happen? :sadface:');
-        }
+    if (cell !== undefined) {
         g.set(p, cell + 1)
-
     } else {
         g.set(p, 1)
     }

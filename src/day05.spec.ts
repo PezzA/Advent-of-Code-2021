@@ -21,8 +21,7 @@ test('it loads the data successfully', () => {
 
 test('it works', () => {
     const data = parseData(testData.split('\n'))
-    const grid = applyLines(data)
+    const grid = applyLines(data, false)
     const val = countIntersectingPoints(grid)
-
     expect(val).toBe(5)
 });

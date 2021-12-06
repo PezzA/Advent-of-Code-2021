@@ -7,7 +7,6 @@ function parseData(input: string[]): number[] {
 export function partOne(input: string): string | number {
     const measurements = parseData(getData(input));
 
-
     let increases = 0;
     let prev: number = 0;
 
