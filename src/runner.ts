@@ -10,6 +10,7 @@ import * as Day9 from './day09'
 import * as Day10 from './day10'
 import * as Day11 from './day11'
 import * as Day12 from './day12'
+import * as Day13 from './day13'
 
 if(process.argv.length != 4) {
     console.log("Useage: ts-node ./src/index.ts <day to run> <file to process>")
@@ -55,6 +56,9 @@ if(input === 1){
 } else if(input === 12){
     console.log("part one: ", Day12.PartOne(filePath))
    console.log("part Two: ", Day12.PartTwo(filePath))
+} else if(input === 13){
+    console.log("part one: ", Day13.PartOne(filePath))
+    console.log("part Two: ", Day13.PartTwo(filePath))
 }
 
 
