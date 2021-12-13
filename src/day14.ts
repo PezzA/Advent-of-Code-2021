@@ -1,15 +1,15 @@
-import {getData} from "./common";
+import {getData, puzzleReturn} from "./common";
 
-export function parseData(input: string[]) : unknown{
+export function parseData(input: string[]) : unknown {
     return ""
 }
 
-export function PartOne(filename: string) : unknown {
-    const data = parseData(getData(filename));
-    return data
+export function PartOne(rawData: string[]) : puzzleReturn {
+    const data = parseData(rawData);
+    return "Not implemented yet"
 }
 
-export function PartTwo(filename: string) : unknown {
-    const data = parseData(getData(filename));
-    return data
+export function PartTwo(rawData: string[]) : puzzleReturn {
+    const data = parseData(rawData);
+    return "Not implemented yet"
 }

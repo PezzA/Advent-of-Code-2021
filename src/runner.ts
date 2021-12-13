@@ -13,6 +13,7 @@ import * as Day12 from './day12'
 import * as Day13 from './day13'
 import * as Day14 from './day14'
 import {performance} from 'perf_hooks'
+import {getData, puzzleReturn} from "./common";
 
 if (process.argv.length != 4) {
     console.log("Useage: ts-node ./src/index.ts <day to run> <file to process>")
@@ -20,7 +21,7 @@ if (process.argv.length != 4) {
 
 const input: number = parseInt(process.argv[2])
 const filePath = process.argv[3]
-
+/*
 if (input === 1) {
     console.log("part one: ", Day1.partOne(filePath))
     console.log("part two: ", Day1.partTwo(filePath))
@@ -52,20 +53,22 @@ if (input === 1) {
     run(Day11.PartOne, Day11.PartTwo, filePath);
 } else if (input === 12) {
     run(Day12.PartOne, Day12.PartTwo, filePath);
-} else if (input === 13) {
+} else */
+if (input === 13) {
     run(Day13.PartOne, Day13.PartTwo, filePath);
 } else if (input === 14) {
     run(Day14.PartOne, Day14.PartTwo, filePath);
 }
 
-function run(p1: { (filename: string): unknown }, p2: { (filename: string): unknown }, filePath: string) {
-    runPuzzlePart(p1, filePath, "Part One")
-    runPuzzlePart(p2, filePath, "Part Two")
+function run(p1: { (data: string[]): puzzleReturn }, p2: { (data: string[]): puzzleReturn }, filePath: string) {
+    const data = getData(filePath)
+    runPuzzlePart(p1, data, "Part One")
+    runPuzzlePart(p2, data, "Part Two")
 }
 
-function runPuzzlePart(puzzlePart: { (filename: string): unknown }, filePath: string, displayText: string) {
+function runPuzzlePart(puzzlePart: { (data: string[]): puzzleReturn }, data: string[], displayText: string) {
     const start = performance.now()
-    const result = puzzlePart(filePath)
+    const result = puzzlePart(data)
     const end = performance.now()
 
     if (Array.isArray(result)) {
@@ -76,7 +79,6 @@ function runPuzzlePart(puzzlePart: { (filename: string): unknown }, filePath: st
     } else {
         console.log(`${displayText}: ${result}. [${end - start}ms]`,)
     }
-
 }
 
 
