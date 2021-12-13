@@ -12,17 +12,17 @@ export function parseData(input: string[]) : [Point[], Fold[]]{
     let folds: Fold[] = []
     let points: Point[] = []
     let processingPoints = true
-    for(let i=0; i<input.length; i++){
-        if(input[i]=== ''){
+    for(const line of input) {
+        if(line === ''){
             processingPoints = false;
             continue;
         }
 
         if(processingPoints){
-            const bits = input[i].split(',');
+            const bits = line.split(',');
             points.push(new Point(parseInt(bits[0]), parseInt(bits[1])))
         } else {
-            const parts = input[i].split('fold along ');
+            const parts = line.split('fold along ');
             const bits = parts[1].split('=');
             folds.push({axis:bits[0], pos:parseInt(bits[1])})
         }
@@ -33,9 +33,9 @@ export function parseData(input: string[]) : [Point[], Fold[]]{
 export function getPaper(points: Point[]) : Paper {
     let paper = new Map<string, boolean>();
 
-    points.forEach(e => {
-        paper.set(e.toString(), true)
-    })
+    for(const point of points){
+        paper.set(point.toString(), true)
+    }
 
     return paper
 }
