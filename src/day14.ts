@@ -1,4 +1,4 @@
-import {PuzzleReturn} from "./common";
+import {Puzzle, PuzzleReturn} from "./common";
 
 type InsertionMap = Map<string, string>
 
@@ -85,7 +85,7 @@ export function getAnswer(counts: Map<string, number>): number {
     return max - min
 }
 
-export function PartOne(rawData: string[]): PuzzleReturn {
+export function partOne(rawData: string[]): PuzzleReturn {
     const [elements, rules] = parseData(rawData)
 
     let elementTemp = elements
@@ -98,7 +98,7 @@ export function PartOne(rawData: string[]): PuzzleReturn {
     return getAnswer(counts)
 }
 
-export function PartTwo(rawData: string[]): PuzzleReturn {
+export function partTwo(rawData: string[]): PuzzleReturn {
     const [elements, rules] = parseData(rawData)
 
     let elementTemp = elements
@@ -110,3 +110,12 @@ export function PartTwo(rawData: string[]): PuzzleReturn {
 
     return getAnswer(counts)
 }
+
+
+export default {
+    title: "Extended Polymerization",
+    year: 2021,
+    day: 14,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle

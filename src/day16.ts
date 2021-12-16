@@ -1,4 +1,4 @@
-import {PuzzleReturn} from "./common";
+import {Puzzle, PuzzleReturn} from "./common";
 
 export interface Packet {
     version: number
@@ -30,6 +30,47 @@ export function sumVersions(p: Packet): number {
     }
 
     return subTotal + p.version
+}
+
+export function evaluateVersions(p: Packet): number {
+    let subTotal = 0
+
+    switch (p.typeId) {
+        case 0:
+            for (const sp of p.subPackets) {
+                subTotal += evaluateVersions(sp)
+            }
+            break;
+        case 1:
+            subTotal = 1
+            for (const sp of p.subPackets) {
+                subTotal *= evaluateVersions(sp)
+            }
+            break;
+        case 2:
+            subTotal = Math.min(...p.subPackets.map(sp => evaluateVersions(sp)))
+            break;
+        case 3:
+            subTotal = Math.max(...p.subPackets.map(sp => evaluateVersions(sp)))
+            break;
+        case 4:
+            subTotal = p.value;
+            break;
+        case 5:
+            subTotal = evaluateVersions(p.subPackets[0]) > evaluateVersions(p.subPackets[1])
+                ? 1 : 0;
+            break;
+        case 6:
+            subTotal = evaluateVersions(p.subPackets[0]) < evaluateVersions(p.subPackets[1])
+                ? 1 : 0;
+            break;
+        case 7:
+            subTotal = evaluateVersions(p.subPackets[0]) === evaluateVersions(p.subPackets[1])
+                ? 1 : 0;
+            break;
+    }
+
+    return subTotal
 }
 
 export function readPacket(inputBinary: BinaryOp): [Packet, string] {
@@ -86,13 +127,24 @@ export function readPacket(inputBinary: BinaryOp): [Packet, string] {
     }
 }
 
-export function PartOne(input: string[]): PuzzleReturn {
+function partOne(input: string[]): PuzzleReturn {
     const binary = convertToBinary(input[0]);
     const [p, _] = readPacket(binary)
     const summedVersions = sumVersions(p)
     return summedVersions
 }
 
-export function PartTwo(input: string[]): PuzzleReturn {
-    return ""
+function partTwo(input: string[]): PuzzleReturn {
+    const binary = convertToBinary(input[0]);
+    const [p, _] = readPacket(binary)
+    const summedVersions = evaluateVersions(p)
+    return summedVersions
 }
+
+export default {
+    title: "Packet Decoder",
+    year: 2021,
+    day: 16,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle

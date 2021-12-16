@@ -1,5 +1,5 @@
 import {Point} from "./day09";
-import {PuzzleReturn} from "./common";
+import {Puzzle, PuzzleReturn} from "./common";
 
 interface Fold {
     axis: string
@@ -74,7 +74,7 @@ export function foldPaper(paper: Paper, fold: Fold) {
     }
 }
 
-export function PartOne(data: string[]): PuzzleReturn {
+export function partOne(data: string[]): PuzzleReturn {
     const [points, folds] = parseData(data);
     const paper = getPaper(points)
 
@@ -82,7 +82,7 @@ export function PartOne(data: string[]): PuzzleReturn {
     return paper.size
 }
 
-export function PartTwo(data: string[]): PuzzleReturn {
+export function partTwo(data: string[]): PuzzleReturn {
     const [points, folds] = parseData(data);
     const paper = getPaper(points)
 
@@ -107,3 +107,11 @@ export function PartTwo(data: string[]): PuzzleReturn {
 
     return output
 }
+
+export default {
+    title: "Transparent Origami",
+    year: 2021,
+    day: 13,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle

@@ -1,4 +1,6 @@
 import {Point} from "./day09";
+import {Puzzle, PuzzleReturn} from "./common";
+
 
 type Grid = number[][]
 
@@ -93,7 +95,7 @@ export function walk(g: Grid,  assessment: Assessment, completedAssessments: Ass
     }
 }
 
-export function PartOne(data: string[]): number {
+export function partOne(data: string[]): PuzzleReturn {
     const grid = parseData(data)
 
 
@@ -117,6 +119,14 @@ export function PartOne(data: string[]): number {
     return min
 }
 
-export function PartTwo(data: string[]): number {
+export function partTwo(data: string[]): PuzzleReturn {
     return 0
 }
+
+export default {
+    title: "Chiton ",
+    year: 2021,
+    day: 15,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle
