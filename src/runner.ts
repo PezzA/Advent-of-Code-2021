@@ -12,8 +12,11 @@ import * as Day11 from './day11'
 import * as Day12 from './day12'
 import * as Day13 from './day13'
 import * as Day14 from './day14'
+import * as Day15 from './day15'
+import * as Day16 from './day16'
+
 import {performance} from 'perf_hooks'
-import {getData, puzzleReturn} from "./common";
+import {getData, PuzzleReturn} from "./common";
 
 if (process.argv.length != 4) {
     console.log("Useage: ts-node ./src/index.ts <day to run> <file to process>")
@@ -58,15 +61,19 @@ if (input === 13) {
     run(Day13.PartOne, Day13.PartTwo, filePath);
 } else if (input === 14) {
     run(Day14.PartOne, Day14.PartTwo, filePath);
+}  else if (input === 15) {
+    run(Day15.PartOne, Day15.PartTwo, filePath);
+} else if (input === 16) {
+    run(Day16.PartOne, Day16.PartTwo, filePath);
 }
 
-function run(p1: { (data: string[]): puzzleReturn }, p2: { (data: string[]): puzzleReturn }, filePath: string) {
+function run(p1: { (data: string[]): PuzzleReturn }, p2: { (data: string[]): PuzzleReturn }, filePath: string) {
     const data = getData(filePath)
     runPuzzlePart(p1, data, "Part One")
     runPuzzlePart(p2, data, "Part Two")
 }
 
-function runPuzzlePart(puzzlePart: { (data: string[]): puzzleReturn }, data: string[], displayText: string) {
+function runPuzzlePart(puzzlePart: { (data: string[]): PuzzleReturn }, data: string[], displayText: string) {
     const start = performance.now()
     const result = puzzlePart(data)
     const end = performance.now()

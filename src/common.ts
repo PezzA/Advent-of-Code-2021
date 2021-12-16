@@ -15,4 +15,4 @@ export function getDataAsString(input: string): string {
     return file;
 }
 
-export type puzzleReturn = string | number | string[]
+export type PuzzleReturn = string | number | string[]

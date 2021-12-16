@@ -1,5 +1,5 @@
 import {Point} from "./day09";
-import {puzzleReturn} from "./common";
+import {PuzzleReturn} from "./common";
 
 interface Fold {
     axis: string
@@ -74,7 +74,7 @@ export function foldPaper(paper: Paper, fold: Fold) {
     }
 }
 
-export function PartOne(data: string[]): puzzleReturn {
+export function PartOne(data: string[]): PuzzleReturn {
     const [points, folds] = parseData(data);
     const paper = getPaper(points)
 
@@ -82,7 +82,7 @@ export function PartOne(data: string[]): puzzleReturn {
     return paper.size
 }
 
-export function PartTwo(data: string[]): puzzleReturn {
+export function PartTwo(data: string[]): PuzzleReturn {
     const [points, folds] = parseData(data);
     const paper = getPaper(points)
 
