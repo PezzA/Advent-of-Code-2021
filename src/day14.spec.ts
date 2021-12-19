@@ -1,6 +1,6 @@
 import {getAnswer, getElementCounts, parseData, runStep} from "./day14";
 
-const testData = `NN
+const testData = `NNCB
 
 CH -> B
 HH -> N

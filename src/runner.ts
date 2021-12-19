@@ -15,5 +15,3 @@ if (!puzzToRun) {
     run(puzzToRun, filePath)
 }
 
-
-

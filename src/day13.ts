@@ -100,7 +100,7 @@ export function partTwo(data: string[]): PuzzleReturn {
             if (p === undefined) {
                 output[y] += " ";
             } else {
-                output[y] += "#";
+                output[y] += "█";
             }
         }
     }
