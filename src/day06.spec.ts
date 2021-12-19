@@ -1,4 +1,4 @@
-import { parseData, PartOne, runDays, runList } from "./day06";
+import { parseData, runDays, runList } from "./day06";
 
 const testData = `3,4,3,1,2`
 
@@ -62,3 +62,33 @@ test('one fish', () => {
         console.log(total)
     */
 });
+
+test('code', ()=>{
+    let ages: number[] = Array(9).fill(0)
+
+     ages[1] = 1
+
+    let count = 0
+    while(true) {
+
+
+        const zeros = ages[0]
+
+        ages[0] = ages[1]
+        ages[1] = ages[2]
+        ages[2] = ages[3]
+        ages[3] = ages[4]
+        ages[4] = ages[5]
+        ages[5] = ages[6]
+        ages[6] = ages[7]
+        ages[7] = ages[8]
+
+        ages[5] += zeros
+        ages[7] += zeros
+        count++
+    }
+
+
+
+
+})
