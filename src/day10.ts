@@ -1,4 +1,4 @@
-import { getData } from "./common";
+import {getData, Puzzle, PuzzleReturn} from "./common";
 
 function isOpener(input: string): boolean {
     return input === "[" || input === "{" || input === "<" || input === "(";
@@ -38,9 +38,91 @@ export function readLine(input: string, index: number, c: Chunk): number {
     return index
 }
 
-export function PartOne(filename: string) : any {
 
-    const data = getData(filename);
+export function stackExceptionReader(input: string): string{
+    let stack : string[]=[];
+
+    for(const char of input){
+        if(isOpener(char)){
+            stack.push(char)
+            continue
+        }
+
+        const lastChar = stack.pop()
+
+        if(!correspondingClose(lastChar ?? "", char)){
+            return char
+        }
+    }
+
+    return ""
+}
+
+export function stackAutocompleter(input: string): string{
+    let stack : string[]=[];
+
+    for(const char of input){
+        if(isOpener(char)){
+            stack.push(char)
+            continue
+        }
+
+        const lastChar = stack.pop()
+    }
+
+    let completed = ""
+    while(stack.length >0){
+        let openChar = stack.pop();
+
+        if(openChar === undefined){
+            throw new Error("should not happen")
+        }
+
+        switch (openChar) {
+            case "(":
+                completed +=")"
+                break;
+            case "[":
+                completed += "]";
+                break;
+            case "{":
+                completed += "}"
+                break;
+            case "<":
+                completed += ">"
+        }
+
+    }
+
+    return completed
+}
+
+export function partOne(data: string[]) : PuzzleReturn {
+
+    let total = 0
+
+    for(const line of data){
+        const res = stackExceptionReader(line)
+
+        switch (res) {
+            case ")":
+                total += 3
+                break;
+            case "]":
+                total += 57;
+                break;
+            case "}":
+                total += 1197
+                break;
+            case ">":
+                total += 25137
+        }
+    }
+
+    return total
+}
+
+export function partOneOld(data: string[]) : PuzzleReturn {
     let total = 0;
 
     for (let i = 0; i < data.length; i++) {
@@ -76,20 +158,53 @@ export function PartOne(filename: string) : any {
     return total;
 }
 
-export function PartTwo(filename: string) : any {
-    const data = getData(filename);
+export function scoreLine(input:string): number{
+    let total = 0;
 
-    for (let i = 0; i < data.length; i++) {
-        let chunk: Chunk = { delimter: data[i][0], closed: false, subChunks: [] }
-
-        try {
-            readLine(data[i], 1, chunk)
-        } catch {
-           // ignore
+    for(const char of input){
+        total *= 5
+        switch (char) {
+            case ")":
+                total += 1
+                break;
+            case "]":
+                total += 2;
+                break;
+            case "}":
+                total += 3
+                break;
+            case ">":
+                total += 4
         }
-
-        
     }
 
-
+    return total;
 }
+
+export function partTwo(input: string[]) : PuzzleReturn {
+    let total = 0
+
+    let lines:string[] = []
+    let scores: number[] = []
+    for(const line of input){
+        if(stackExceptionReader(line) === ""){
+            const res =stackAutocompleter(line)
+           lines.push(res)
+            scores.push(scoreLine(res))
+        }
+
+    }
+
+    scores.sort((n1,n2) => n1 - n2)
+    const mid = Math.ceil(scores.length/2) -1
+    return scores[mid]
+    // not 1479862
+}
+
+export default {
+    title: "Syntax Scoring",
+    year: 2021,
+    day: 10,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle

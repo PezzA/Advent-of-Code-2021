@@ -10,7 +10,6 @@ export function getData(input: string): string[] {
 }
 
 export function getDataAsString(input: string): string {
-    // I don't expect this ever to be a large file.
     const file = readFileSync(input, 'utf-8');
 
     return file;
@@ -26,11 +25,11 @@ export interface Puzzle {
     partTwo: (input: string[]) => PuzzleReturn;
 }
 
-export function run(puzz: Puzzle, filePath: string) {
+export function run(puzzle: Puzzle, filePath: string) {
     const data = getData(filePath)
-    console.log(`--- ${puzz.year}, Day ${puzz.day}: ${puzz.title} ---`)
-    runPuzzlePart(puzz.partOne, data, "Part One")
-    runPuzzlePart(puzz.partTwo, data, "Part Two")
+    console.log(`--- ${puzzle.year}, Day ${puzzle.day}: ${puzzle.title} ---`)
+    runPuzzlePart(puzzle.partOne, data, "Part One")
+    runPuzzlePart(puzzle.partTwo, data, "Part Two")
 }
 
 function runPuzzlePart(puzzlePart: { (data: string[]): PuzzleReturn }, data: string[], displayText: string) {

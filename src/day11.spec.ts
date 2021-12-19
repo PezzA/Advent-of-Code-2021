@@ -1,4 +1,5 @@
 import { parseData, processStep } from "./day11";
+import {scoreLine} from "./day10";
 
 const test1 = `11111
 19991
@@ -51,3 +52,8 @@ test('it should work part 2', () => {
 
     expect(steps).toBe(195)
 });
+
+
+test('scores', ()=>{
+    expect(scoreLine('}}]])})]')).toBe(288957)
+})
