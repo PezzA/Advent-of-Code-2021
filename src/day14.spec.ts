@@ -1,4 +1,4 @@
-import {getAnswer, getElementCounts, InsertionMap, parseData, runStep} from "./day14";
+import {getAnswer, getCreates, getElementCounts, InsertionMap, parseData, runStep, runStep2} from "./day14";
 
 const testData = `NNCB
 

@@ -11,11 +11,11 @@ export class Point {
     }
 
     public toString = (): string => {
-        return `${this.x}-${this.y}`;
+        return `${this.x}|${this.y}`;
     }
 
     public static fromString(input:string) : Point{
-        const bits = input.split('-');
+        const bits = input.split('|');
         return new Point(parseInt(bits[0]), parseInt(bits[1]));
     }
 }

@@ -1,4 +1,4 @@
-import {Puzzle, PuzzleReturn} from "./common";
+import {cloneMap, Puzzle, PuzzleReturn} from "./common";
 
 export type InsertionMap = Map<string, string>
 
@@ -45,16 +45,6 @@ export function runStep(element: string, rules: InsertionMap): string {
 
     return newElement
 }
-
-function cloneMap<T, V>(input: Map<T, V>): Map<T, V> {
-    const map = new Map<T, V>();
-
-    for (const [k, v] of input) {
-        map.set(k, v)
-    }
-    return map
-}
-
 
 export function runStep2(pairMap: Map<string, number>, repMap: Map<string, string[]>): Map<string, number> {
     const clonedMap = cloneMap(pairMap)
@@ -151,7 +141,7 @@ export function partOne(rawData: string[]): PuzzleReturn {
     return getAnswer(counts)
 }
 
-function getCreates(rules: InsertionMap): Map<string, string[]> {
+export function getCreates(rules: InsertionMap): Map<string, string[]> {
     const alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     const replacements = new Map<string, string[]>();
 

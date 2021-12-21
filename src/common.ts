@@ -63,3 +63,12 @@ function runPuzzlePart(puzzlePart: { (data: string[]): PuzzleReturn }, data: str
         console.log(`  ${fgGreen}${displayText}${reset}: ${reset}${fgCyan}${ms}${reset}${dim}ms${reset}\t : ${fgYellow}${result}${reset}`,)
     }
 }
+
+export function cloneMap<T, V>(input: Map<T, V>): Map<T, V> {
+    const map = new Map<T, V>();
+
+    for (const [k, v] of input) {
+        map.set(k, v)
+    }
+    return map
+}
