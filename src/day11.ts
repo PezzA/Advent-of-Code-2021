@@ -1,5 +1,4 @@
-
-import {getData} from "./common";
+import { Puzzle, PuzzleReturn} from "./common";
 import {Point} from "./point";
 
 // horribly inefficient for this puzzle, but so easy to use
@@ -82,8 +81,8 @@ export function processStep(grid: Grid): number {
     return flashes
 }
 
-export function PartOne(inputfile:string): number {
-    const [data, _, __] = parseData(getData(inputfile));
+export function partOne(inputData:string[]): PuzzleReturn {
+    const [data, _, __] = parseData(inputData);
     let totalF = 0;
 
     for(let i=0; i<100; i++){
@@ -93,8 +92,8 @@ export function PartOne(inputfile:string): number {
     return totalF
 }
 
-export function PartTwo(inputfile:string): number {
-    const [grid, _, __] = parseData(getData(inputfile));
+export function partTwo(inputData:string[]): PuzzleReturn {
+    const [grid, _, __] = parseData(inputData);
     let steps = 1;
 
     while(true) {
@@ -105,3 +104,11 @@ export function PartTwo(inputfile:string): number {
     }
     return steps
 }
+
+export default {
+    title: "Dumbo Octopus",
+    year: 2021,
+    day: 11,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle

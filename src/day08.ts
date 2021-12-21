@@ -22,7 +22,7 @@
 // 7 - 8
 
 
-import { getData } from "./common";
+import { Puzzle, PuzzleReturn} from "./common";
 
 interface Note {
     signals: string[]
@@ -242,8 +242,8 @@ export function getNumberValue(note: Note) : number {
     return parseInt(stringNumber)
 }
 
-export function PartOne(filename: string): number {
-    const data = parseData(getData(filename));
+export function partOne(input: string[]): PuzzleReturn {
+    const data = parseData(input);
 
     let total = 0;
 
@@ -258,8 +258,8 @@ export function PartOne(filename: string): number {
     return total
 }
 
-export function PartTwo(filename:string): number {
-    const data = parseData(getData(filename));
+export function partTwo(input:string[]): PuzzleReturn {
+    const data = parseData(input);
 
     let total=0;
 
@@ -268,3 +268,11 @@ export function PartTwo(filename:string): number {
     });
     return total;
 }
+
+export default {
+    title: "Seven Segment Search",
+    year: 2021,
+    day: 8,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle

@@ -1,4 +1,4 @@
-import { getData } from "./common";
+import { Puzzle, PuzzleReturn} from "./common";
 
 interface instruction {
     command: string
@@ -71,8 +71,8 @@ function processRevisedInstruction(ins: instruction, currentPos: point): point {
     }
 }
 
-export function PartOne(input: string): number {
-    const commands = parseData(getData(input));
+export function partOne(input: string[]): PuzzleReturn {
+    const commands = parseData(input);
 
     let currentPos: point = { x: 0, y: 0, aim: 0 }
     for (let i = 0; i < commands.length; i++) {
@@ -82,8 +82,8 @@ export function PartOne(input: string): number {
     return currentPos.x * currentPos.y
 }
 
-export function PartTwo(input: string): number {
-    const commands = parseData(getData(input));
+export function partTwo(input: string[]): PuzzleReturn {
+    const commands = parseData(input);
 
     let currentPos: point = { x: 0, y: 0, aim: 0 }
     for (let i = 0; i < commands.length; i++) {
@@ -94,3 +94,11 @@ export function PartTwo(input: string): number {
 
     // not 419980
 }
+
+export default {
+    title: "Dive!",
+    year: 2021,
+    day: 2,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle

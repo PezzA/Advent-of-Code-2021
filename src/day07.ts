@@ -1,4 +1,4 @@
-import { getData, getDataAsString } from "./common";
+import { Puzzle, PuzzleReturn} from "./common";
 
 export function parseData(inputData: string): number[] {
     return inputData.split(',').map(e => parseInt(e))
@@ -45,10 +45,18 @@ export function process(subs: number[], doActualFuelUse: boolean): number | unde
     return smallest
 }
 
-export function PartOne(fileName: string): any {
-    return process(parseData(getDataAsString(fileName)), false)
+function partOne(data: string[]): PuzzleReturn {
+    return process(parseData(data[0]), false) ?? 0
 }
 
-export function PartTwo(fileName: string): any {
-    return process(parseData(getDataAsString(fileName)), true)
+function partTwo(data: string[]): PuzzleReturn {
+    return process(parseData(data[0]), true) ?? 0
 }
+
+export default {
+    title: "The Treachery of Whales",
+    year: 2021,
+    day: 7,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle

@@ -1,4 +1,4 @@
-import { getData } from "./common";
+import {Puzzle, PuzzleReturn} from "./common";
 import {Point} from "./point";
 
 
@@ -96,8 +96,8 @@ export function getLowPoints(map: HeightMap, width: number, height: number): Poi
     return points
 }
 
-export function PartOne(filename: string): any {
-    const [data, height, width] = parseData(getData(filename));
+export function partOne(input: string[]): PuzzleReturn {
+    const [data, height, width] = parseData(input);
 
     const lowPoints = getLowPoints(data, width, height);
 
@@ -109,8 +109,8 @@ export function PartOne(filename: string): any {
     return total
 }
 
-export function PartTwo(filename: string): any {
-    const [data, height, width] = parseData(getData(filename));
+export function partTwo(input: string[]): PuzzleReturn {
+    const [data, height, width] = parseData(input);
 
     const lowPoints = getLowPoints(data, width, height);
 
@@ -127,3 +127,11 @@ export function PartTwo(filename: string): any {
 
     return sizes[0] * sizes[1] * sizes[2]
 }
+
+export default {
+    title: "Smoke Basinh",
+    year: 2021,
+    day: 9,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle

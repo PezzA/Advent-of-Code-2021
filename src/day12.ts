@@ -1,4 +1,4 @@
-import {getData} from "./common";
+import {getData, Puzzle, PuzzleReturn} from "./common";
 
 interface Cave {
     name: string
@@ -100,8 +100,6 @@ export function isNavigableCave(c: Cave, currentPath: string[], multiSmallCave: 
     return false
 }
 
-
-
 export function navigate(cg: CaveGraph, currentPath: string[], completedPaths: string[][], multiSmallCave: boolean){
     const currentCave = cg.get(currentPath[currentPath.length-1])
 
@@ -123,8 +121,8 @@ export function navigate(cg: CaveGraph, currentPath: string[], completedPaths: s
     }
 }
 
-export function PartOne(fileName: string): number {
-    const cg = parseData(getData(fileName));
+export function partOne(data: string[]): PuzzleReturn {
+    const cg = parseData(data);
 
     let completedPaths : string[][] = []
     navigate(cg, ["start"], completedPaths, false)
@@ -132,11 +130,19 @@ export function PartOne(fileName: string): number {
     return completedPaths.length
 }
 
-export function PartTwo(fileName: string): number {
-    const cg = parseData(getData(fileName));
+export function partTwo(data: string[]): PuzzleReturn {
+    const cg = parseData(data);
 
     let completedPaths : string[][] = []
     navigate(cg, ["start"], completedPaths, true)
 
     return completedPaths.length
 }
+
+export default {
+    title: "Passage Pathing",
+    year: 2021,
+    day: 12,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle

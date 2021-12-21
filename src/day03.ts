@@ -1,4 +1,4 @@
-import { getData } from "./common";
+import {Puzzle, PuzzleReturn} from "./common";
 
 enum Rating {
     oxygen,
@@ -29,7 +29,6 @@ function ratingCheck(values: string[], index: number): number[] {
     return [ones, zeros]
 }
 
-
 function getCheckCandidates(values: string[], rating: Rating, index: number): string[] {
     const [ones, zeros] = ratingCheck(values, index)
 
@@ -48,9 +47,7 @@ function getCheckCandidates(values: string[], rating: Rating, index: number): st
     return values.filter(v => [...v][index] === bitToKeep);
 }
 
-export function PartOne(input: string): any {
-    const data = getData(input);
-
+export function partOne(data: string[]): PuzzleReturn {
     let [gamma, epsilon] = ["", ""]
 
     for (let i = 0; i < data[0].length; i++) {
@@ -65,20 +62,25 @@ export function PartOne(input: string): any {
     return parseInt(gamma, 2) * parseInt(epsilon, 2)
 }
 
-
-function getRating(values: string[], rating: Rating) : number {
+function getRating(values: string[], rating: Rating): number {
     for (let i = 0; i < values[0].length; i++) {
-        values = getCheckCandidates(values,rating, i)
-        if(values.length === 1) {
+        values = getCheckCandidates(values, rating, i)
+        if (values.length === 1) {
             break
         }
     }
 
-    return parseInt(values[0],2)
+    return parseInt(values[0], 2)
 }
 
-export function PartTwo(input: string): any {
-    const data = getData(input);
-
+export function partTwo(data: string[]): PuzzleReturn {
     return getRating(data, Rating.oxygen) * getRating(data, Rating.co2)
 }
+
+export default {
+    title: "Binary Diagnostic",
+    year: 2021,
+    day: 3,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle

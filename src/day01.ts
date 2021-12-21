@@ -1,11 +1,12 @@
-import { getData } from './common';
+import {Puzzle, PuzzleReturn} from "./common";
+
 
 function parseData(input: string[]): number[] {
     return input.map(e => parseInt(e));
 }
 
-export function partOne(input: string): string | number {
-    const measurements = parseData(getData(input));
+function partOne(input: string[]): PuzzleReturn {
+    const measurements = parseData(input);
 
     let increases = 0;
     let prev: number = 0;
@@ -26,8 +27,8 @@ export function partOne(input: string): string | number {
     return increases;
 }
 
-export function partTwo(input: string): any {
-    const measurements = parseData(getData(input));
+function partTwo(input: string[]): PuzzleReturn {
+    const measurements = parseData(input);
 
     let increases = 0;
     let prev: number = 0;
@@ -47,3 +48,11 @@ export function partTwo(input: string): any {
     }
     return increases;
 }
+
+export default {
+    title: "Sonar Sweep",
+    year: 2021,
+    day: 1,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle

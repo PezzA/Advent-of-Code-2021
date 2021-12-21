@@ -1,4 +1,5 @@
-import { getData } from "./common"
+import { Puzzle, PuzzleReturn} from "./common"
+
 
 interface BingoNumber {
     value: number
@@ -115,12 +116,20 @@ export function lastWinner(calls: number[], cards: BingoNumber[][]): number {
     return 0
 }
 
-export function PartOne(input: string): any {
-    const [calls, cards] = parseData(getData(input))
+export function partOne(input: string[]): PuzzleReturn {
+    const [calls, cards] = parseData(input)
     return solve(calls, cards)
 }
 
-export function PartTwo(input: string): any {
-    const [calls, cards] = parseData(getData(input))
+export function partTwo(input: string[]): PuzzleReturn {
+    const [calls, cards] = parseData(input)
     return lastWinner(calls, cards)
 }
+
+export default {
+    title: "Giant Squid",
+    year: 2021,
+    day: 4,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle

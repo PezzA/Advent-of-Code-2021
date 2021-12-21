@@ -1,4 +1,5 @@
-import { getData } from "./common";
+import {Puzzle, PuzzleReturn} from "./common";
+
 
 interface Point {
     x: number
@@ -102,14 +103,22 @@ export function countIntersectingPoints(grid: Grid): number {
     return intersects
 }
 
-export function PartOne(inputFile: string): number {
-    const data = parseData(getData(inputFile))
+export function partOne(inputFile: string[]): PuzzleReturn {
+    const data = parseData(inputFile)
     const grid = applyLines(data, false)
     return countIntersectingPoints(grid)
 }
 
-export function PartTwo(inputFile: string): number {
-    const data = parseData(getData(inputFile))
+export function partTwo(inputFile: string[]): PuzzleReturn {
+    const data = parseData(inputFile)
     const grid = applyLines(data, true)
     return countIntersectingPoints(grid)
 }
+
+export default {
+    title: "Hydrothermal Venture",
+    year: 2021,
+    day: 5,
+    partOne: partOne,
+    partTwo: partTwo
+} as Puzzle
