@@ -1,5 +1,6 @@
 import {cloneMap, Puzzle, PuzzleReturn} from "./common";
-import {Point} from "./day09";
+import {Point} from "./point";
+
 
 type Image = Map<string, boolean>
 
@@ -10,9 +11,9 @@ export function parseInput(input: string[]): [string, Image] {
         for (let x = 0; x < input[y].length; x++) {
             const char = input[y][x];
             if (char === "#") {
-                image.set(`${x}|${y - 2}`, true)
+                image.set(Point.formatCoords(x, y-2), true)
             } else {
-                image.set(`${x}|${y - 2}`, false)
+                image.set(Point.formatCoords(x, y-2), false)
             }
         }
     }

@@ -1,5 +1,6 @@
 import {nextStep, parseData, withinRange} from "./day17";
-import {Point} from "./day09";
+import {Point} from "./point";
+
 
 const testData = 'target area: x=20..30, y=-10..-5';
 

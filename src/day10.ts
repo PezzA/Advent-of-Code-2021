@@ -1,4 +1,4 @@
-import {getData, Puzzle, PuzzleReturn} from "./common";
+import { Puzzle, PuzzleReturn} from "./common";
 
 function isOpener(input: string): boolean {
     return input === "[" || input === "{" || input === "<" || input === "(";

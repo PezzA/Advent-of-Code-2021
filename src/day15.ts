@@ -1,5 +1,6 @@
-import {Point} from "./day09";
+
 import {Puzzle, PuzzleReturn} from "./common";
+import {Point} from "./point";
 
 
 type Grid = number[][]

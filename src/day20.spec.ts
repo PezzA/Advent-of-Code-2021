@@ -1,5 +1,6 @@
 import {enhanceImage, getBounds, getPixelValue, parseInput, print} from "./day20";
-import {Point} from "./day09";
+import {Point} from "./point";
+
 
 const testData = `..#.#..#####.#.#.#.###.##.....###.##.#..###.####..#####..#....#..#..##..###..######.###...####..#..#####..##..#.#####...##.#.#..#.##..#.#......#.###.######.###.####...#.##.##..#..#..#####.....#.#....###..#.##......#.....#..#..#..##..#...##.######.####.####.#.#...#.......#..#.#.#...####.##.#......#..#...##.#.##..#...##.#.##..###.#......#.#.......#.#.#.####.###.##...#.....####.#..#..#.##.#....##..#.####....##...##..#...#......#.#.......#.......##..####..#...#.#.#...##..#.#..###..#####........#..####......#..#
 
@@ -27,7 +28,7 @@ test('gets bounds', ()=>{
 test('gets point', ()=>{
     const [iea, image] = parseInput(testData.split('\n'))
 
-    const val = getPixelValue(new Point(2, 5), image, iea)
+    const val = getPixelValue(new Point(2, 5), image, iea, true)
 
     expect(val).toBe(false)
 
@@ -36,9 +37,9 @@ test('gets point', ()=>{
 test('works (2)', ()=>{
     const [iea, image] = parseInput(testData.split('\n'))
 
-    const image2 = enhanceImage(image, iea)
+    const image2 = enhanceImage(image, iea, true)
 
-    const image3 = enhanceImage(image2, iea)
+    const image3 = enhanceImage(image2, iea, false)
 
     expect(image3.size).toBe(35)
 })

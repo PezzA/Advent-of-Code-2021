@@ -1,5 +1,6 @@
-import { Point } from "./day09";
+
 import {getData} from "./common";
+import {Point} from "./point";
 
 // horribly inefficient for this puzzle, but so easy to use
 type Grid = Map<string, Octopus>
@@ -13,7 +14,7 @@ export function parseData(input: string[]): [Grid, number, number] {
 
     for (let y = 0; y < input.length; y++) {
         for (let x = 0; x < input[y].length; x++) {
-            const p = `${x}-${y}`;
+            const p = Point.formatCoords(x,y);
             heightMap.set(p, { flashed: false, energy: parseInt(input[y][x]) })
         }
     }

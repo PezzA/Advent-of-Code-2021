@@ -1,24 +1,6 @@
-import { Z_PARTIAL_FLUSH } from "zlib";
 import { getData } from "./common";
+import {Point} from "./point";
 
-export class Point {
-    x: number;
-    y: number;
-
-    constructor(x: number, y: number) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public toString = (): string => {
-        return `${this.x}|${this.y}`;
-    }
-
-    public static fromString(input:string) : Point{
-        const bits = input.split('|');
-        return new Point(parseInt(bits[0]), parseInt(bits[1]));
-    }
-}
 
 export type HeightMap = Map<string, number>
 
@@ -28,7 +10,7 @@ export function parseData(input: string[]): [HeightMap, number, number] {
 
     for (let y = 0; y < input.length; y++) {
         for (let x = 0; x < input[y].length; x++) {
-            const p = `${x}-${y}`;
+            const p = Point.formatCoords(x,y);
             heightMap.set(p, parseInt(input[y][x]))
         }
     }
@@ -79,7 +61,7 @@ export function getLowPoints(map: HeightMap, width: number, height: number): Poi
     let points: Point[] = [];
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
-            const cellBeingChecked = map.get(`${x}-${y}`);
+            const cellBeingChecked = map.get(Point.formatCoords(x,y));
 
             if (cellBeingChecked === undefined) {
                 throw new Error('unwrapping the undefined, should not happen')

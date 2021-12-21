@@ -1,5 +1,6 @@
 import {Assessment, getLazyRisk, parseData, walk} from "./day15";
-import {Point} from "./day09";
+import {Point} from "./point";
+
 
 const testData = `1163751742
 1381373672

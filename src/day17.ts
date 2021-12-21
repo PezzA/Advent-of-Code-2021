@@ -1,5 +1,6 @@
 import { Puzzle, PuzzleReturn} from "./common";
-import {Point} from "./day09";
+import {Point} from "./point";
+
 
 export function parseData(input: string): [Point, Point] {
     const bits = input.split(",");
